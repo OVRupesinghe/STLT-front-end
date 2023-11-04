@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Inter";
+  }
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.webcam-container {
+  position: relative;
+}
+
+.video,
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video {
+  z-index: 2;
+}
+
+.photo {
+  z-index: 1;
+  display: none; /* Initially hidden */
+}
+
+.photo.active {
+  display: block; /* Show the photo div when a photo is captured */
+}
+
+.video.behind {
+  z-index: 1; /* Put the video div behind when a photo is captured */
+}
+
+
