@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Steppers from '../../components/GeneralUserRegistration/Steppers';
 import Alert from '@mui/material/Alert';
 import useFormContext from '../../hooks/useFormContext';
+import axios from '../../api/posts'
 
 export default function GeneralDetails() {
 
@@ -56,19 +57,20 @@ export default function GeneralDetails() {
                         autoComplete="username"
                         {...register("username", {
                             required: "field required",
-                    
-                            // validate: {
-                            //     checkEmail: async (value) => {
-                            //         // const res = await fetch(`http://localhost:3001/user/checkEmail/${value}`);
-                            //         const res = await fetch(`https://jsonplaceholder.typicode.com/users?email=${value}`)
-                            //         const data = await res.json();
-                            //         return data.length === 0 || "Email already exists";
-                            //     }
-                            // }
+                            validate: {
+                                checkEmail: async (value) => {
+                                    const response = await axios.get(`checkusername/${value}`);
+                                    if(response.data.message == "Username already exists"){
+                                        return response.data.message
+                                    }else{
+                                        return true
+                                    }
+                                }
+                            }
                         }
                         )}
                     />
-                    {errors.email?.message ? <Alert sx={{ mt: '10px' }} severity="error">{errors.email?.message}</Alert> : ""}
+                    {errors.username?.message ? <Alert sx={{ mt: '10px' }} severity="error">{errors.username?.message}</Alert> : ""}
                 </Grid>
                 <Grid item xs={12} sx={{ mt: 3 }}>
                     <TextField
