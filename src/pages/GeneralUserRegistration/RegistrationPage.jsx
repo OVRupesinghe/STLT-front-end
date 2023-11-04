@@ -58,13 +58,16 @@ export default function Register() {
   const onSubmit = async (e) => {
     if(page === 2){
       const data = getValues();
-      // const response = await axios.post("/register", data);
-      console.log(data);
-      // if(response.data.status === "success"){
-      //   setPage(page + 1);
-      // }else{
-      //   setErrMsg(response.data.message);
-      // }
+      try{
+        const response = await axios.post('register', data);
+        if(response.data.message === 'User added successfully'){
+          setPage(page + 1);
+        }else{
+          setErrMsg(response.data.message);
+        }
+      }catch(err){
+        setErrMsg(err.response.data.message);
+      }
     }else{
       setPage(page + 1);
     }

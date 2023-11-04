@@ -15,45 +15,30 @@ export default function ContactDetails() {
   return (
     <Grid container spacing={2} sx={{ marginTop: "8%" }}>
       <Steppers step={2} />
-      <Grid item xs={12} sx={{ mt: 1 }}>
-        <Typography
-          component="h1"
-          variant="subtitle1"
-          className="mt-10 mb-5 font-light text-neutral-500"
-        >
-          Enter your contact number :
-        </Typography>
+      <Grid item xs={12} sx={{ mt: 3 }}>
         <TextField
+          required
           fullWidth
-          id="contact"
-          label="Contact No."
-          {...register("contact", {
+          id="userid"
+          label="Enter a username:"
+          autoComplete="username"
+          {...register("username", {
             required: "field required",
-            pattern: {
-              value: /^\d{10}$/,
-              message: "Contact number should have 10 digits",
-            },
             validate: {
-              checkPhone: async (value) => {
-                const response = await axios.get(`checkphone/${value}`);
-                if (
-                  response.data.message == "User with this phone number already exists"
-                ) {
-                  return response.data.message;
+              checkUser: async (value) => {
+                const response = await axios.get(`checkusername/${value}`);
+                if (response.data.message == "Username already exists") {
+                  return response.data.message
                 } else {
-                  return true;
+                  return true
                 }
               },
-            },
-          })}
+
+            }
+          }
+          )}
         />
-        {errors.contact?.message ? (
-          <Alert sx={{ mt: "10px" }} severity="error">
-            {errors.contact?.message}
-          </Alert>
-        ) : (
-          ""
-        )}
+        {errors.username?.message ? <Alert sx={{ mt: '10px' }} severity="error">{errors.username?.message}</Alert> : ""}
       </Grid>
       <Grid item xs={12} sx={{ mt: 1 }}>
         <Typography
@@ -80,7 +65,7 @@ export default function ContactDetails() {
         ) : (
           ""
         )}
-    </Grid>
+      </Grid>
     </Grid>
   );
 }

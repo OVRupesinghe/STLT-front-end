@@ -1,9 +1,6 @@
 import GeneralDetails from './GeneralDetails';
 import UserCredentials from './UserCredentials';
-import UserImage from './UserImage';
 import ContactDetails from './ContactDetails';
-import OtpVerification from './OtpVerification';
-import VerificationDocs from './VerificationDocs';
 import FinalPage from './FinalPage';
 import useFormContext from  '../../hooks/useFormContext';
 

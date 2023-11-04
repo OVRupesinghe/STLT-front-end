@@ -4,7 +4,9 @@ import Grid from '@mui/material/Grid';
 import Steppers from '../../components/GeneralUserRegistration/Steppers';
 import Alert from '@mui/material/Alert';
 import useFormContext from '../../hooks/useFormContext';
-import axios from '../../api/posts'
+import axios from '../../api/posts';
+import Typography from '@mui/material/Typography';
+
 
 export default function GeneralDetails() {
 
@@ -52,30 +54,6 @@ export default function GeneralDetails() {
                     <TextField
                         required
                         fullWidth
-                        id="username"
-                        label="Username"
-                        autoComplete="username"
-                        {...register("username", {
-                            required: "field required",
-                            validate: {
-                                checkUser: async (value) => {
-                                    const response = await axios.get(`checkusername/${value}`);
-                                    if(response.data.message == "Username already exists"){
-                                        return response.data.message
-                                    }else{
-                                        return true
-                                    }
-                                }
-                            }
-                        }
-                        )}
-                    />
-                    {errors.username?.message ? <Alert sx={{ mt: '10px' }} severity="error">{errors.username?.message}</Alert> : ""}
-                </Grid>
-                <Grid item xs={12} sx={{ mt: 3 }}>
-                    <TextField
-                        required
-                        fullWidth
                         id="email"
                         label="Email Address"
                         autoComplete="email"
@@ -88,9 +66,9 @@ export default function GeneralDetails() {
                             validate: {
                                 checkEmail: async (value) => {
                                     const response = await axios.get(`checkemail/${value}`);
-                                    if(response.data.message == "User with this email already exists"){
+                                    if (response.data.message == "User with this email already exists") {
                                         return response.data.message
-                                    }else{
+                                    } else {
                                         return true
                                     }
                                 }
@@ -99,6 +77,56 @@ export default function GeneralDetails() {
                         )}
                     />
                     {errors.email?.message ? <Alert sx={{ mt: '10px' }} severity="error">{errors.email?.message}</Alert> : ""}
+                </Grid>
+                <Grid item xs={12} sx={{ mt: 1 }}>
+                    <Typography
+                        component="h1"
+                        variant="subtitle1"
+                        className="mb-5 font-light text-neutral-500"
+                    >
+                        Enter your Sri Tel mobile number :
+                    </Typography>
+                    <TextField
+                        fullWidth
+                        id="contact"
+                        label="Contact No."
+                        {...register("contact", {
+                            required: "field required",
+                            pattern: {
+                                value: /^\d{10}$/,
+                                message: "Contact number should have 10 digits",
+                            },
+                            validate: {
+                                checkPhone: async (value) => {
+                                    const response = await axios.get(`checkphone/${value}`);
+                                    if (
+                                        response.data.message == "User with this phone number already exists"
+                                    ) {
+                                        return response.data.message;
+                                    } else {
+                                        return true;
+                                    }
+                                },
+                                checkValidity: async (value) => {
+                                    const response = await axios.get(`checkphoneValidity/${value}`);
+                                    if (
+                                        response.data.message == "Not a valid SriTel phone number"
+                                    ) {
+                                        return response.data.message;
+                                    } else {
+                                        return true;
+                                    }
+                                }
+                            },
+                        })}
+                    />
+                    {errors.contact?.message ? (
+                        <Alert sx={{ mt: "10px" }} severity="error">
+                            {errors.contact?.message}
+                        </Alert>
+                    ) : (
+                        ""
+                    )}
                 </Grid>
             </Grid>
 
