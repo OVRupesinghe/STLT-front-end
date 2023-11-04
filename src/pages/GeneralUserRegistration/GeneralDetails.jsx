@@ -58,7 +58,7 @@ export default function GeneralDetails() {
                         {...register("username", {
                             required: "field required",
                             validate: {
-                                checkEmail: async (value) => {
+                                checkUser: async (value) => {
                                     const response = await axios.get(`checkusername/${value}`);
                                     if(response.data.message == "Username already exists"){
                                         return response.data.message
@@ -84,15 +84,17 @@ export default function GeneralDetails() {
                             pattern: {
                                 value: /\S+@\S+\.\S+/,
                                 message: "Invalid email address"
+                            },
+                            validate: {
+                                checkEmail: async (value) => {
+                                    const response = await axios.get(`checkemail/${value}`);
+                                    if(response.data.message == "User with this email already exists"){
+                                        return response.data.message
+                                    }else{
+                                        return true
+                                    }
+                                }
                             }
-                            // validate: {
-                            //     checkEmail: async (value) => {
-                            //         // const res = await fetch(`http://localhost:3001/user/checkEmail/${value}`);
-                            //         const res = await fetch(`https://jsonplaceholder.typicode.com/users?email=${value}`)
-                            //         const data = await res.json();
-                            //         return data.length === 0 || "Email already exists";
-                            //     }
-                            // }
                         }
                         )}
                     />

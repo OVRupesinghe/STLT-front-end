@@ -18,9 +18,6 @@ export const FormProvider = ({children}) => {
     const form = useForm({
         mode: "onTouched",
         reValidateMode: "onSubmit",
-        defaultValues: {
-            verifyMode: "0"
-        }
     });
     const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
     const { errors } = formState;
