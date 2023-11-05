@@ -17,6 +17,7 @@ const useRefreshToken = () => {
                 ...prev,
                 role: decoded.userrole,
                 phone: decoded.phone,
+                userId: decoded.userId,
                 accessToken:response.data.accessToken}
         });
 

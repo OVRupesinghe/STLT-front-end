@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react"
 import { Snackbar, Alert, Box, Typography, CircularProgress, Link } from "@mui/material"
-
-import ListItem from "./ListItem"
-import {billing} from "../../api/billing"
+import ListItem from "./ListItem";
+import axios from "../../api/posts";
+import useAuth  from "../../hooks/useAuth";
 
 const BillList = () => {
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
-
-  const userId = 1;
+  const { auth } = useAuth();
 
   useEffect(() => {
     const fetchBills = async () => {
       setLoading(true);
       setErrorMsg("");
       try {
-        const res = await billing.get(`/bills/user/${userId}`);
+        const res = await axios.get(`bills/user/${auth.userId}`);
         setBills(res.data);
         console.log("Bills : ",res?.data);
       } catch (err) {
