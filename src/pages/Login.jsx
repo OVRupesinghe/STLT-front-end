@@ -85,7 +85,8 @@ export default function Login() {
       const accessToken = response.data.accessToken;
       //decode phone
       const phone = jwt_decode(accessToken).phone;
-      setAuth({ role, accessToken, phone });
+      const userId = jwt_decode(accessToken).userId;
+      setAuth({ role, accessToken, phone, userId });
       // resetUser();
       // setPwd("");
 

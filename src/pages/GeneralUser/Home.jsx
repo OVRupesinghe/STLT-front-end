@@ -5,6 +5,7 @@ import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Profile from "./ProfilePage";
 import ChatSurpport from "../../components/ChatApp/ChatSurpport";
+import BillList from "../Billing/BillList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -67,7 +68,7 @@ export default function UploadPage() {
             <Profile />
           </TabPanel>
           <TabPanel value={value} index={1} style={{ overflowY: "auto", height: "80vh" }}>
-           
+            <BillList />
           </TabPanel>
           <TabPanel value={value} index={2} style={{ overflowY: "auto", height: "80vh" }}>
           
