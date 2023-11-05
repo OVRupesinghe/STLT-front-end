@@ -20,7 +20,7 @@ class SupportClientUtility {
     console.log("Received raw message:", event.data);
     const message = JSON.parse(event.data);
     console.log("Received message:", message);
-    // Handle received messages as needed
+    return message;
   }
 
   handleClose() {
