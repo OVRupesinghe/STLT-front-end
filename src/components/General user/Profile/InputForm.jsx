@@ -38,7 +38,6 @@ const InputForm = (props) => {
         <Grid item xs={12}>
           <Stack direction='row' justifyContent='space-between' >
             <ChangePassword password = {props.password}/>
-            <DeleteProfile />
           </Stack>
         </Grid>
       </Grid>

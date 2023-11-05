@@ -47,7 +47,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* public routes */}
-          <Route path="" element={<Login />} />
+          <Route path="" element={<FormProvider><Login /></FormProvider>} />
           <Route
             path="registration"
             element={

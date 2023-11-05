@@ -22,7 +22,8 @@ import { Snackbar, Alert } from "@mui/material";
 import useInput from "../hooks/useInput";
 import useToggle from "../hooks/useToggle";
 import jwt_decode from "jwt-decode";
-import image from "../images/logo.png";
+import ChangePassword from "./forgotPassword";
+
 
 function Copyright(props) {
   return (
@@ -79,7 +80,7 @@ export default function Login() {
           withCredentials: true,
         }
       );
-    
+
       const role = response.data.userrole;
       const accessToken = response.data.accessToken;
       //decode phone
@@ -163,7 +164,7 @@ export default function Login() {
                 Welcome back !
               </Typography>
 
-             
+
             </Stack>
 
             <Box
@@ -215,9 +216,7 @@ export default function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link2 href="#" variant="body2">
-                    Forgot password?
-                  </Link2>
+                  <ChangePassword />
                 </Grid>
                 <Grid item>
                   <Link2 href="/registration" variant="body2">

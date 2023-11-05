@@ -7,11 +7,15 @@ import useFormContext from "../../../hooks/useFormContext";
 import Alert from "@mui/material/Alert";
 import { useRef } from 'react';
 import Button from '@mui/material/Button';
+import useAuth from '../../../hooks/useAuth';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
 
 const PwdForm = (props) => {
   const old_password = props.password;
+  const axios = useAxiosPrivate();
   const theme = useTheme();
+  const {auth} = useAuth();
   const { register, errors, watch, getValues, handleSubmit } = useFormContext();
   const password = useRef({});
   password.current = watch("pass", "");
@@ -41,7 +45,18 @@ const PwdForm = (props) => {
   };
 
   const onSubmit = async (e) => {
-    console.log(getValues());
+    const data = {
+      phone:auth.phone,
+      pass: getValues("pass"),
+    }
+    console.log(data);
+    try{
+      const res = await axios.post('changePassword', data);
+      console.log(res.data);
+    }catch(err){
+      console.log(err);
+    }
+
   };
 
   return (
