@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
-import Profile from "./ProfilePage";
-import ChatSurpport from "../../components/ChatApp/ChatSurpport";
+import SupervisorChatApp from "../../components/ChatApp/ChatAdmin";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,7 +33,7 @@ export default function UploadPage() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, height: "100vh" }}>
         <Box >
           <Stack direction="row" justifyContent="space-between">
-            <h2 className="text-3xl font-bold">SriCare Home Page</h2>
+            <h2 className="text-3xl font-bold">Surpport Page</h2>
           </Stack>
 
           <Tabs
@@ -45,35 +44,12 @@ export default function UploadPage() {
             centered
           >
             <Tab
-              label="Profile" 
-              sx={{ fontWeight: "bold" }}
-            />
-
-            <Tab
-              label='Billing'
-              sx={{ fontWeight: "bold" }}
-            />
-
-            <Tab
-              label='Services'
-              sx={{ fontWeight: "bold" }}
-            />
-            <Tab
               label='Customer Support'
               sx={{ fontWeight: "bold" }}
             />
           </Tabs>
           <TabPanel value={value} index={0} style={{ overflowY: "auto", height: "80vh" }}>
-            <Profile />
-          </TabPanel>
-          <TabPanel value={value} index={1} style={{ overflowY: "auto", height: "80vh" }}>
-           
-          </TabPanel>
-          <TabPanel value={value} index={2} style={{ overflowY: "auto", height: "80vh" }}>
-          
-          </TabPanel>
-          <TabPanel value={value} index={3} style={{ overflowY: "auto", height: "80vh" }}>
-            <ChatSurpport />
+            <SupervisorChatApp />
           </TabPanel>
         </Box>
       </Box>

@@ -92,7 +92,7 @@ export default function Login() {
       if (role === "user") {
         navigate("/general-user");
       } else {
-        alert("invalid role");
+        navigate("/surpport");
       }
     } catch (err) {
       if (!err?.response) {

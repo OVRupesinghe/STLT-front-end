@@ -15,6 +15,7 @@ import PersistLogin from "./components/PersistLogin";
 import PolicePersistLogin from "./components/PolicePersistLogin";
 import ProfilePage from "./pages/GeneralUser/ProfilePage";
 import UserFAQ from "./pages/GeneralUser/Information";
+import Home2 from "./pages/Surpport/Home";
 
 export default function App() {
   const THEME = createTheme({
@@ -61,6 +62,20 @@ export default function App() {
                   element={
                     <FormProvider>
                       <UploadPage />
+                    </FormProvider>
+                  }
+                />
+                <Route path="profile" element={<ProfilePage />} />
+                <Route path="information" element={<UserFAQ />} />
+              </Route>
+            </Route>
+            <Route element={<RequireAuth allowedRole="surpport" />}>
+              <Route path="surpport/" element={<GeneralUserRoutes />}>
+                <Route
+                  path=""
+                  element={
+                    <FormProvider>
+                      <Home2 />
                     </FormProvider>
                   }
                 />
