@@ -13,12 +13,14 @@ class SupervisorChatApp extends Component {
     this.supportSupervisor = new SupportSupervisorUtility("ws://localhost:50001");
 
     // Handle received messages
-    this.supportSupervisor.handleMessage = (message) => {
+    this.supportSupervisor.handleMessage = (event) => {
       // Update the chatMessages array with the received message
+      const message = JSON.parse(event.data); // based on the message status change the status
       this.setState((prevState) => ({
         chatMessages: [...prevState.chatMessages, message],
       }));
     };
+
   }
 
   // Handle sending messages
