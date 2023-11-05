@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Typography, Box, CircularProgress, Snackbar, Alert } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Service from "./Service";
-import {provision} from "../../api/billing";
+import axios from "../../api/posts";
+import useAuth from "../../hooks/useAuth";
 
 const Services = () => {
   const { userId } = useParams();
@@ -10,13 +11,14 @@ const Services = () => {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const { auth } = useAuth();
   
   useEffect(() => {
     setLoading(true);
     setErrorMsg("");
     try {
       const fetchServices = async () => {
-        const res = await provision.get(`/services/user/${userId}`);
+        const res = await axios.get(`services/user/${auth.userId}`);
         console.log("Services : ", res?.data);
         setServices(res.data);
       };

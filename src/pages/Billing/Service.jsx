@@ -12,7 +12,8 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { PropTypes } from "prop-types";
-import {provision} from "../../api/billing";
+import axios from "../../api/posts";
+import useAuth from "../../hooks/useAuth";
 
 const Service = ({ keyID, service }) => {
   Service.propTypes = {
@@ -23,13 +24,18 @@ const Service = ({ keyID, service }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { auth } = useAuth();
+  const data = {
+    userId: auth.userId,
+  }
 
   const handleActivate = async (id) => {
     setLoading(true);
     setErrorMsg("");
     try {
-      await provision.post(`/services/${id}/activate`);
+      await axios.post(`services/${id}/activate`,data);
       setErrorMsg("Please Wait...");
+      window.location.reload();
       setSuccess(true);
     } catch (err) {
       setErrorMsg(err.message);
@@ -42,8 +48,9 @@ const Service = ({ keyID, service }) => {
     setLoading(true);
     setErrorMsg("");
     try {
-      await provision.post(`/services/${id}/deactivate`);
+      await axios.post(`services/${id}/deactivate`,data);
       setErrorMsg("Please Wait...");
+      window.location.reload();
       setSuccess(true);
     } catch (err) {
       setErrorMsg(err.message);

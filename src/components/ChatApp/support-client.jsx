@@ -17,7 +17,7 @@ class SupportClientUtility {
   }
 
   handleMessage(event) {
-    console.log("Received raw message:", event.data);
+    console.log("Received raw message:", event);
     const message = JSON.parse(event.data);
     console.log("Received message:", message);
     return message;
@@ -28,13 +28,16 @@ class SupportClientUtility {
   }
 
   handleSend(plainTextMessage) {
+    console.log("Sending message:", plainTextMessage);
     if (this.websocket.readyState === WebSocket.OPEN) {
       const message = {
         type: "MESSAGE",
         chatRoomId: this.chatRoomId, // You need to set chatRoomId
         message: plainTextMessage,
       };
+      console.log("Sending message:", JSON.stringify(message));
       this.websocket.send(JSON.stringify(message));
+      
     } else {
       console.error("WebSocket connection is not open. Message not sent.");
     }

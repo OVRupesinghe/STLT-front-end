@@ -17,7 +17,7 @@ class SupportSupervisorUtility {
   }
 
   handleMessage(event) {
-    console.log("Received raw message:", event.data);
+    console.log("Received raw message:", event);
     const message = JSON.parse(event.data);
     console.log("Received message:", message);
     return message;
