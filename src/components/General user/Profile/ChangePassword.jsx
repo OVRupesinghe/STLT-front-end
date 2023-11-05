@@ -51,7 +51,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function ChangePassword() {
+export default function ChangePassword(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -67,7 +67,7 @@ export default function ChangePassword() {
     <div>
       <Button
         startIcon={<PasswordIcon />}
-        variant="outlined"  
+        variant="text"  
         size = 'large'
         className='rounded-full'
         sx={{textTransform: 'none' }}
@@ -86,7 +86,7 @@ export default function ChangePassword() {
           </Typography>
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <PwdForm />
+          <PwdForm password = {props.password}/>
         </DialogContent>
       </BootstrapDialog>
     </div>

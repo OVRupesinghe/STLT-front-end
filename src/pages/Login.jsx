@@ -79,15 +79,12 @@ export default function Login() {
           withCredentials: true,
         }
       );
-      
-      console.log(response.data);
+    
       const role = response.data.userrole;
-      // const accessToken = response.data.accessToken;
-      // const role = response.data.userrole;
-      const fname = user;
-      // const decoded = jwt_decode(accessToken);
-      const user_id = response.data.userid;
-      setAuth({ user, role, fname, user_id });
+      const accessToken = response.data.accessToken;
+      //decode phone
+      const phone = jwt_decode(accessToken).phone;
+      setAuth({ role, accessToken, phone });
       // resetUser();
       // setPwd("");
 

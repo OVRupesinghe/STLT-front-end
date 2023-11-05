@@ -4,21 +4,16 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
 
-function VehicalInfo() {
+function VehicalInfo(props) {
   const keyValuePairs = [
-    { key: 'Absoulute Owner', value: 'Osura Viduranga' },
-    { key: 'Engine Number',   value: '200012702955' },
-    { key: 'Chassis Number', value: '200012702955' },
-    { key: 'Class of Vehicle', value: 'MOTOR CAR' },
-    { key: 'Make', value: 'TOYOTA' },
-    { key: 'Model', value: 'AQUA' },
-    { key: 'YOM', value: '2017' }
+    { key: 'User Id', value: props.profile_data.id },
+    { key: 'Full Name',   value: props.profile_data.fname + ' ' + props.profile_data.lname },
+    { key: 'Email', value: props.profile_data.email },
+    { key: 'STL Phone number ', value: props.profile_data.phone },
+    { key: 'Address', value: props.profile_data.address },
   ];
   return (
-    <Card className='m-3 shadow-md rounded-md' sx={{ boxShadow: 'none', width : '90%', padding: 1 }}>
-      <Typography className='text-xl font-bold mt-2 text-zinc-600' align='center'>
-        CAB-9698
-      </Typography>
+    <Card className='m-3 shadow-md rounded-md' sx={{ boxShadow: 'none', width : '50%', padding: 1 }}>
       <CardContent>
         <Grid container  alignItems='center' justifyContent='center'>
           {keyValuePairs.map((pair, index) => (
