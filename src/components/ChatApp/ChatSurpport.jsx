@@ -13,7 +13,7 @@ class ChatApp extends Component {
     this.supportClient = new SupportClientUtility("ws://localhost:50001");
 
     // Handle received messages
-    this.supportClient.handleMessage = (event) => {
+    this.supportClient.websocket.onmessage = (event) => {
       // Update the chatMessages array with the received message
       const message = JSON.parse(event.data); // based on the message status change the status
       this.setState((prevState) => ({
