@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
-import PendingTable from "../../components/General user/video_upload/PendingTable";
-import RejectedTable from "../../components/General user/video_upload/RejectedTable";
 import Profile from "./ProfilePage";
 
 function TabPanel(props) {
@@ -68,10 +66,10 @@ export default function UploadPage() {
             <Profile />
           </TabPanel>
           <TabPanel value={value} index={1} style={{ overflowY: "auto", height: "80vh" }}>
-            <PendingTable />
+            
           </TabPanel>
           <TabPanel value={value} index={2} style={{ overflowY: "auto", height: "80vh" }}>
-            <RejectedTable />
+          
           </TabPanel>
         </Box>
       </Box>

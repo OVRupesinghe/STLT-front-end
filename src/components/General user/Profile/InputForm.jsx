@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Grid } from '@mui/material';
+import {  Grid } from '@mui/material';
 import ChangePassword from './ChangePassword';
-import DeleteProfile from './DeleteProfile';
-import { provinces } from "../../../data/Constants";
-import MenuItem from '@mui/material/MenuItem';
-import UpdateIcon from '@mui/icons-material/Update';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
